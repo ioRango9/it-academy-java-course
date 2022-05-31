@@ -1,6 +1,5 @@
 package Lesson4;
 
-
 public class Main {
     public static void main(String[] args) {
         int [] array = new int[] {5, 5, 1, 3, 6};
@@ -10,6 +9,7 @@ public class Main {
         if (array[2] == 1) System.out.println("*");
         if (array[3] == 3) System.out.println("***");
         if (array[4] == 6) System.out.println("******");
+        else System.out.println("Mistake");
         int j = 0;
         for (int i = 0; i < array.length; i++) {
             j += array[i];
