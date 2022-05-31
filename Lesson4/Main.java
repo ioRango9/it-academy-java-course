@@ -10,5 +10,10 @@ public class Main {
         if (array[2] == 1) System.out.println("*");
         if (array[3] == 3) System.out.println("***");
         if (array[4] == 6) System.out.println("******");
+        int j = 0;
+        for (int i = 0; i < array.length; i++) {
+            j += array[i];
+        }
+        System.out.println("Sum of the numbers int the array = " + j);
     }
 }
