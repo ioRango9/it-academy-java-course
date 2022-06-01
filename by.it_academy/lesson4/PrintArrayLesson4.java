@@ -12,4 +12,3 @@ public class PrintArrayLesson4 {
         }
     }
 }
-1
