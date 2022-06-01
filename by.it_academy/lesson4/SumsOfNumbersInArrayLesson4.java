@@ -1,6 +1,6 @@
 package by.it_academy.lesson4;
 
-public class SumsOfNumbersInArray {
+public class SumsOfNumbersInArrayLesson4 {
 
     public static void main(String[] args) {
         int [] array = new int[] {4, 3, 6, 1, 2};
