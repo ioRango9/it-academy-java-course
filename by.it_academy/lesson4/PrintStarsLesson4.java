@@ -8,12 +8,9 @@ public class PrintStarsLesson4 {
             int j = 1;
             while (j <= array[i]) {
                 System.out.print("*");
-                if (j == array[i]) {
-                    System.out.println("");
-                }
                 j++;
             }
-
+            System.out.println();
         }
     }
 }
