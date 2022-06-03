@@ -1,4 +1,4 @@
-package by.it_academy.lesson2;
+package by.it_academy.lesson3;
 
 public class AboutMe {
 

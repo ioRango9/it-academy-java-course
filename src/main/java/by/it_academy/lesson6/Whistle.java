@@ -1,4 +1,4 @@
-package by.it_academy.lesson5;
+package by.it_academy.lesson6;
 
 public class Whistle {
     private String sound;
