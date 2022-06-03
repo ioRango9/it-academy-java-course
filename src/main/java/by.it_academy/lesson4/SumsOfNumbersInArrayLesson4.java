@@ -3,7 +3,7 @@ package by.it_academy.lesson4;
 public class SumsOfNumbersInArrayLesson4 {
 
     public static void main(String[] args) {
-        int [] array = new int[] {4, 3, 6, 1, 2};
+        int[] array = new int[]{4, 3, 6, 1, 2};
         int j = 0;
         for (int i = 0; i < array.length; i++) {
             j += array[i];
