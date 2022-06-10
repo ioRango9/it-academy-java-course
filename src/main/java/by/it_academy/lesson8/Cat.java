@@ -1,7 +1,7 @@
 package by.it_academy.lesson8;
 
 public class Cat extends Animal implements NoiseCapable {
-    private String name;
+
 
     public Cat(String name) {
         super(name);
@@ -26,5 +26,6 @@ public class Cat extends Animal implements NoiseCapable {
         System.out.println(cat.getName());
         cat.sleep();
         cat.eat();
+        Cat cat1 = new Cat();
     }
 }

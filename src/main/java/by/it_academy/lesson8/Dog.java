@@ -1,8 +1,6 @@
 package by.it_academy.lesson8;
 
 public class Dog extends Animal implements NoiseCapable{
-    private String name;
-
 
     public Dog(String name) {
         super(name);
