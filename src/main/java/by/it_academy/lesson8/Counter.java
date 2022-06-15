@@ -37,6 +37,7 @@ public class Counter {
         System.out.println(counter.getValue());
         counter.decrease(24);
         counter.increase(3);
+        counter.increase();
         System.out.println(counter.getValue());
     }
 }

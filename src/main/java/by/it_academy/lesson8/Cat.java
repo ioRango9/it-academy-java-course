@@ -8,7 +8,7 @@ public class Cat extends Animal implements NoiseCapable {
     }
 
     public Cat() {
-        this(null);
+        this("Cat");
     }
 
     public void purr() {

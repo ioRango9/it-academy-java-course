@@ -7,7 +7,7 @@ public class Dog extends Animal implements NoiseCapable{
     }
 
     public Dog() {
-        this(null);
+        this("Dog");
     }
 
     public void bark() {
