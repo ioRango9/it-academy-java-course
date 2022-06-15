@@ -5,26 +5,22 @@ import java.util.regex.Pattern;
 
 public class Task1 {
     public static void main(String[] args) {
-        String[] myData = new String[]{"Igor, 1997", "Sebastian, 2001", "Christopher, 2004", "Demetrius, 1968"};
-        Pattern pattern = Pattern.compile("\\b\\w+\\b");
-        Pattern pattern1 = Pattern.compile("\\d+");
-        String text = "";
-        double averageDuring = 0;
-        int j = 0;
-        for (int i = 0; i < myData.length; i++) {
-            Matcher matcher = pattern.matcher(myData[i]);
-            matcher.find();
-            matcher.group();
-            if (matcher.group().length() > text.length()) {
-                text = matcher.group();
+        String[] dataNamesAndDob = new String[]{"Igor, 1997", "Sebastian, 2001", "Christopher, 2004", "Demetrius, 1968"};
+        Pattern patternSymbols = Pattern.compile("\\b\\w+\\b");
+        Pattern patternNumbers = Pattern.compile("\\d+");
+        String longestName = "";
+        double averageYearOfBirth = 0;
+        for(int i = 0; i < dataNamesAndDob.length; i++) {
+            Matcher matcherNames = patternSymbols.matcher(dataNamesAndDob[i]);
+            matcherNames.find();
+            if (matcherNames.group().length() > longestName.length()) {
+                longestName = matcherNames.group();
             }
-            Matcher matcher1 = pattern1.matcher(myData[i]);
-            matcher1.find();
-            matcher1.group();
-            averageDuring += Integer.parseInt(matcher1.group());
-            j++;
+            Matcher matcherDob = patternNumbers.matcher(dataNamesAndDob[i]);
+            matcherDob.find();
+            averageYearOfBirth += Integer.parseInt(matcherDob.group());
         }
-        System.out.println(text);
-        System.out.println(averageDuring / j);
+        System.out.println(longestName);
+        System.out.println(averageYearOfBirth / dataNamesAndDob.length);
     }
 }

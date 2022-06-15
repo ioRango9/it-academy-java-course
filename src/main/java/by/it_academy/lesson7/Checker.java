@@ -9,23 +9,22 @@ public class Checker {
         int hh = 0;
         int mm = 0;
         int ss = 0;
-        Checker checker = new Checker();
         Pattern pattern = Pattern.compile("\\d+");
         Matcher matcher = pattern.matcher(str);
         int i = 0;
         while (matcher.find()) {
-            int time_divide = 0;
+            int timeDivide = 0;
             matcher.group();
-            time_divide += Integer.parseInt(matcher.group());
+            timeDivide += Integer.parseInt(matcher.group());
             i++;
             if (i == 1) {
-                hh = time_divide;
+                hh = timeDivide;
             }
             if (i == 2) {
-                mm = time_divide;
+                mm = timeDivide;
             }
             if (i == 3) {
-                ss = time_divide;
+                ss = timeDivide;
             }
         }
         return (hh >= 0 & hh < 24 & mm >= 0 & mm < 60 & ss >= 0 & ss < 60);
