@@ -1,6 +1,8 @@
 package by.it_academy.lesson9;
 
-import java.util.*;
+
+import java.util.Comparator;
+import java.util.TreeSet;
 
 public class Card {
     private final int price;
@@ -48,20 +50,7 @@ public class Card {
 
     public static void main(String[] args) {
 
-        Comparator<Card> cardComparator = new Comparator<>() {
-
-
-            @Override
-            public int compare(Card o1, Card o2) {
-                return o1.getSuit().compareTo(o2.getSuit());
-            }
-
-
-            @Override
-            public boolean equals(Object obj) {
-                return false;
-            }
-        };
+        Comparator<Card> cardComparator = new SuitComparator().thenComparing(new PriceComparator());
         TreeSet<Card> cardSet = new TreeSet(cardComparator);
         cardSet.add(new Card(11, Suit.CLUB));
         cardSet.add(new Card(4, Suit.SPADE));
