@@ -1,64 +1,82 @@
 package by.it_academy.lesson10;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import jdk.swing.interop.SwingInterOpUtils;
+
+import java.util.*;
 
 public class Abbreviations {
-//    private String abbreviation;
-//    private String explanation;
+    private static final Map<String, String> map = new HashMap<>();
 
 
-    public void addAbbreviations(String abbreviation, String explanation, Map<String, String> map) {
+    public void addAbbreviations(String abbreviation, String explanation) {
         map.put(abbreviation, explanation);
     }
 
-    public boolean hasAbbreviation(String abbreviations, Map<String, String> map) {
+    public boolean hasAbbreviation(String abbreviations) {
         for (String check : map.keySet()) {
-            if (abbreviations.equals(check)) {
+            if (map.containsKey(abbreviations)) {
                 return true;
             }
         }
         return false;
     }
 
-    public String findExplanationFor(String abbreviation, Map<String, String> map) {
-        for (Map.Entry<String, String> entry : map.entrySet())
-            if (entry.getKey().equals(abbreviation)) {
-                return entry.getValue();
+    public String findExplanationFor(String abbreviation) {
+        for (String check : map.keySet()) {
+            if (map.containsKey(abbreviation)) {
+                return map.get(abbreviation);
             }
+        }
         return "";
     }
 
-    public void printAbbreviations(Map map) {
-        System.out.println("All abbreviations = " + map.keySet());
+    public void printAbbreviations() {
+        System.out.println("All abbreviations: ");
+        System.out.println(map.keySet());
+
     }
 
-    public void printAbbreviationsWhere(String text, Map<String, String> map) {
+    public void printAbbreviationsWhere(String text) {
+        String[] arrayText = text.split(" ");
+        List<String> list = new LinkedList<>(Arrays.asList(arrayText));
         for (Map.Entry<String, String> entry : map.entrySet()) {
-            if (entry.getValue().equals(text)) {
-                System.out.println(entry.getKey());
+            String check = entry.getValue();
+            String[] checkValue = check.split(" ");
+            for (int i = 0; i < checkValue.length; i++) {
+                if (list.contains(checkValue[i])) {
+                    System.out.println(entry.getKey());
+                }
             }
         }
     }
 
     public void printExplanationOfAbbreviationsWhere(String text) {
-        // По условию не понял, как метод должен работать
+        String[] arrayText = text.split(" ");
+        List<String> list = new LinkedList<>(Arrays.asList(arrayText));
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            String check = entry.getValue();
+            String[] checkValue = check.split(" ");
+            for (int i = 0; i < checkValue.length; i++) {
+                if (list.contains(checkValue[i])) {
+                    System.out.println(entry.getValue());
+                }
+            }
+        }
     }
 
 
     public static void main(String[] args) {
-        Map<String, String> map = new HashMap<>();
-        Abbreviations AAndE = new Abbreviations();
+        Abbreviations abbreviation = new Abbreviations();
         map.put("NP", "No problem");
         map.put("GL", "Good luck");
         map.put("MB", "My bad");
         System.out.println(map.entrySet());
-        AAndE.addAbbreviations("HF", "Have fun", map);
+        abbreviation.addAbbreviations("HF", "Have fun");
         System.out.println(map.entrySet());
-        System.out.println(AAndE.hasAbbreviation("GL", map));
-        System.out.println(AAndE.findExplanationFor("MB", map));
-        AAndE.printAbbreviations(map);
-        AAndE.printAbbreviationsWhere("My bad", map);
+        System.out.println(abbreviation.hasAbbreviation("GL"));
+        System.out.println(abbreviation.findExplanationFor("MB"));
+        abbreviation.printAbbreviations();
+        abbreviation.printAbbreviationsWhere("I Have a Good day");
+        abbreviation.printExplanationOfAbbreviationsWhere("I don't Have a car");
     }
 }

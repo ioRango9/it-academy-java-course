@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Task2 {
 
-    private static double average (List<Integer> numbers) {
+    private static double average(List<Integer> numbers) {
         double sums = 0;
         int counter = 0;
         for (Integer average : numbers) {
