@@ -21,31 +21,23 @@ public class Card {
         return price;
     }
 
-    public String toString(Suit suit) {
-        switch (getPrice()) {
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-            case 9:
-            case 10:
-                return " " + getPrice();
-            case 11:
-                return " J";
-            case 12:
-                return " Q";
-            case 13:
-                return " K";
-            case 14:
-                return " A";
-            default:
+    @Override
+    public String toString() {
+        if (price >= 1 && price <= 10) {
+            return suit + " " + price;
+        } if (price == 11) {
+            return suit + " J";
+        } if (price == 12) {
+            return suit + " Q";
+        } if (price == 13) {
+            return suit + " K";
+        } if (price == 14) {
+            return suit + " A";
+        } else  {
+            return "Mistake";
         }
-        return "";
     }
+
 
 
     public static void main(String[] args) {
@@ -59,7 +51,7 @@ public class Card {
         cardSet.add(new Card(4, Suit.HEART));
         cardSet.add(new Card(7, Suit.CLUB));
         for (Card card : cardSet) {
-            System.out.println(card.getSuit() + card.toString(Suit.CLUB));
+            System.out.println(card);
         }
     }
 }
