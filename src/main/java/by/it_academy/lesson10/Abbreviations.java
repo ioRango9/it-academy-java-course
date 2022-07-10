@@ -1,7 +1,5 @@
 package by.it_academy.lesson10;
 
-import jdk.swing.interop.SwingInterOpUtils;
-
 import java.util.*;
 
 public class Abbreviations {
@@ -13,21 +11,11 @@ public class Abbreviations {
     }
 
     public boolean hasAbbreviation(String abbreviations) {
-        for (String check : map.keySet()) {
-            if (map.containsKey(abbreviations)) {
-                return true;
-            }
-        }
-        return false;
+        return map.containsKey(abbreviations);
     }
 
     public String findExplanationFor(String abbreviation) {
-        for (String check : map.keySet()) {
-            if (map.containsKey(abbreviation)) {
-                return map.get(abbreviation);
-            }
-        }
-        return "";
+        return map.get(abbreviation);
     }
 
     public void printAbbreviations() {
@@ -37,28 +25,26 @@ public class Abbreviations {
     }
 
     public void printAbbreviationsWhere(String text) {
-        String[] arrayText = text.split(" ");
-        List<String> list = new LinkedList<>(Arrays.asList(arrayText));
+        String[] arrayText = text.split("[ ,.!?]");
+        List<String> list = new ArrayList<>(Arrays.asList(arrayText));
         for (Map.Entry<String, String> entry : map.entrySet()) {
-            String check = entry.getValue();
-            String[] checkValue = check.split(" ");
-            for (int i = 0; i < checkValue.length; i++) {
-                if (list.contains(checkValue[i])) {
+            for (int i = 0; i < list.size(); i++) {
+                if ((entry.getValue()).toLowerCase().contains(list.get(i).toLowerCase())) {
                     System.out.println(entry.getKey());
+                    break;
                 }
             }
         }
     }
 
     public void printExplanationOfAbbreviationsWhere(String text) {
-        String[] arrayText = text.split(" ");
-        List<String> list = new LinkedList<>(Arrays.asList(arrayText));
+        String[] arrayText = text.split("[ ,.!?]");
+        List<String> list = new ArrayList<>(Arrays.asList(arrayText));
         for (Map.Entry<String, String> entry : map.entrySet()) {
-            String check = entry.getValue();
-            String[] checkValue = check.split(" ");
-            for (int i = 0; i < checkValue.length; i++) {
-                if (list.contains(checkValue[i])) {
+            for (int i = 0; i < list.size(); i++) {
+                if ((entry.getValue()).toLowerCase().contains(list.get(i).toLowerCase())) {
                     System.out.println(entry.getValue());
+                    break;
                 }
             }
         }
@@ -74,9 +60,9 @@ public class Abbreviations {
         abbreviation.addAbbreviations("HF", "Have fun");
         System.out.println(map.entrySet());
         System.out.println(abbreviation.hasAbbreviation("GL"));
-        System.out.println(abbreviation.findExplanationFor("MB"));
+        System.out.println(abbreviation.findExplanationFor("HF"));
         abbreviation.printAbbreviations();
-        abbreviation.printAbbreviationsWhere("I Have a Good day");
-        abbreviation.printExplanationOfAbbreviationsWhere("I don't Have a car");
+        abbreviation.printAbbreviationsWhere("I have a good day");
+        abbreviation.printExplanationOfAbbreviationsWhere("i don't have time");
     }
 }
