@@ -21,6 +21,6 @@ public class ComparablePair<T extends Comparable<T>> implements Pair<T, T> {
     }
 
     public boolean isLeftGreaterThanRight() {
-        return leftElement.compareTo(rightElement) > 0;
+        return left().compareTo(right()) > 0;
     }
 }

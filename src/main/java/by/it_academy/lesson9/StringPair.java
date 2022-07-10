@@ -7,7 +7,7 @@ public class StringPair extends ComparablePair<String> {
     }
 
     public static void main(String[] args) {
-        StringPair stringPair = new StringPair("a", "A");
+        StringPair stringPair = new StringPair("a", "aa");
         System.out.println(stringPair.isLeftGreaterThanRight());
     }
 }
