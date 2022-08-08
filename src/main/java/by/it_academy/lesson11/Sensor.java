@@ -8,6 +8,6 @@ public interface Sensor {
 
     void setOff();
 
-    double read();
+    int read();
 
 }
