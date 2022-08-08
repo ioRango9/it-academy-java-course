@@ -23,8 +23,7 @@ public class HomeWork1 {
                 System.out.println("  is not number");
             }
         }
-        try (Writer writer = new FileWriter("it-academy-java-course" +
-                    "/src/main/java/by/it_academy/lesson12/CubeNumbers.txt")) {
+        try (Writer writer = new FileWriter("CubeNumbers.txt")) {
             for (int iterate : list) {
                 writer.write(Math.pow(iterate, 3) + "\n");
             }

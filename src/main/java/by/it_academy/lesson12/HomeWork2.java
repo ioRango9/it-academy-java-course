@@ -1,59 +1,49 @@
 package by.it_academy.lesson12;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Scanner;
 
 public class HomeWork2 {
 
-
     public static void main(String[] args) throws IOException {
-        DateFile homeWork2 = new DateFile();
-        Scanner scanner = new Scanner(System.in);
-        List<String> list = new LinkedList<>();
-        List<String> list1 = new LinkedList<>();
-        List<String> list2 = new LinkedList<>();
-        List<DateFile> something = new LinkedList<>();
-        Map<String, Integer> mapNumberOfGames = new LinkedHashMap<>();
-        Map<String, Integer> mapTeamWins = new LinkedHashMap<>();
-        BufferedReader reader = new BufferedReader(new FileReader
-                ("it-academy-java-course/src/main/java/data.csv"));
+        List<String> lines = new LinkedList<>();
+        Map<String, Integer> teamToWins = new LinkedHashMap<>();
+        Map<String, Integer> teamToLoses = new LinkedHashMap<>();
+        BufferedReader reader = new BufferedReader(new FileReader("src/main/java/by/it_academy/lesson12/data.csv"));
         while (reader.ready()) {
-                list.add(reader.readLine());
+            lines.add(reader.readLine());
         }
-        for (String value : list) {
-            String[] str = value.split("[,. ]");
-            list1.addAll(Arrays.asList(str));
-        }
-//        for (int i = 0; i < list1.size(); i++) {
-//         try {
-//             something.add(new DateFile(list1.get(i), list1.get(i + 1), list1.get(i + 2), list1.get(i + 3)));
-//         } catch (IndexOutOfBoundsException ignored){}
-//        }
-//        System.out.println(something);
+        for (String line : lines) {
+            String[] parts = line.split("[,. ]");
+            String firstTeam = parts[0];
+            String secondTeam = parts[1];
+            int firstTeamScore = Integer.parseInt(parts[2]);
+            int secondTeamScore = Integer.parseInt(parts[3]);
 
-
-        for (String iterate : list1) {
-            try {
-                int x = Integer.parseInt(iterate);
-                list2.add(String.valueOf(x));
-            } catch (NumberFormatException ignored){}
-        }
-        list1.removeAll(list2);
-
-        for (String s : list1) {
-            if (mapNumberOfGames.containsKey(s)) {
-                mapNumberOfGames.put(s, mapNumberOfGames.get(s) + 1);
+            if (firstTeamScore > secondTeamScore) {
+                teamToWins.compute(firstTeam, (team, score) -> Objects.requireNonNullElse(score, 0) + 1);
+                teamToLoses.compute(secondTeam, (team, score) -> Objects.requireNonNullElse(score, 0) + 1);
             } else {
-                mapNumberOfGames.put(s, 1);
+                teamToLoses.compute(firstTeam, (team, score) -> Objects.requireNonNullElse(score, 0) + 1);
+                teamToWins.compute(secondTeam, (team, score) -> Objects.requireNonNullElse(score, 0) + 1);
             }
         }
 
+        Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
-            String stringScanner = scanner.nextLine().toUpperCase();
-            if (mapNumberOfGames.containsKey(stringScanner)) {
-                System.out.println("This team has played a " + mapNumberOfGames.get(stringScanner) + " matches");
+            String line = scanner.nextLine();
+            if (teamToWins.containsKey(line) || teamToLoses.containsKey(line)) {
+                System.out.println("This team won " + teamToWins.getOrDefault(line, 0) + " matches");
+                System.out.println("This team lost " + teamToLoses.getOrDefault(line, 0) + " matches");
             }
-            if (stringScanner.equalsIgnoreCase("end")) {
+            if (line.equalsIgnoreCase("end")) {
                 break;
             }
         }
