@@ -1,17 +1,17 @@
 package by.it_academy.lesson11;
 
 public class StandardSensor implements Sensor {
-    private int sensor = 1;
+
+    private final int sensor;
 
     public StandardSensor(int sensor) {
         this.sensor = sensor;
     }
 
-    @Override
-    public String toString() {
-        return "StandardSensor{" +
-                "sensor=" + sensor +
-                '}';
+    public static void main(String[] args) {
+        StandardSensor standardSensor = new StandardSensor(1);
+        System.out.println(standardSensor.isOn());
+        System.out.println(standardSensor.read());
     }
 
     @Override
@@ -34,9 +34,11 @@ public class StandardSensor implements Sensor {
         return sensor;
     }
 
-    public static void main(String[] args) {
-        StandardSensor standardSensor = new StandardSensor(1);
-        System.out.println(standardSensor.isOn());
-        System.out.println(standardSensor.read());
+    @Override
+    public String toString() {
+        return "StandardSensor{" +
+            "sensor=" + sensor +
+            '}';
     }
+
 }

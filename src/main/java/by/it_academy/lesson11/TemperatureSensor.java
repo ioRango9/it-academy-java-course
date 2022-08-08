@@ -2,42 +2,9 @@ package by.it_academy.lesson11;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class TemperatureSensor implements Sensor{
-private int sensor = 0;
+public class TemperatureSensor implements Sensor {
 
-    @Override
-    public String toString() {
-        return "TemperatureSensor{" +
-                "sensor=" + sensor +
-                '}';
-    }
-
-    @Override
-    public boolean isOn() {
-        if (sensor == 1) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public void setOn() {
-        sensor = 1;
-    }
-
-    @Override
-    public void setOff() {
-        sensor = 0;
-    }
-
-    @Override
-    public int read() {
-        if (sensor == 1) {
-            return ThreadLocalRandom.current().nextInt(-30, 31);
-        } else {
-            throw new IllegalStateException("Sensor is off!");
-        }
-    }
+    private boolean isOn = false;
 
     public static void main(String[] args) {
         TemperatureSensor temperatureSensor = new TemperatureSensor();
@@ -46,4 +13,36 @@ private int sensor = 0;
         System.out.println(temperatureSensor.isOn());
         System.out.println(temperatureSensor.read());
     }
+
+    @Override
+    public boolean isOn() {
+        return isOn;
+    }
+
+    @Override
+    public void setOn() {
+        isOn = true;
+    }
+
+    @Override
+    public void setOff() {
+        isOn = false;
+    }
+
+    @Override
+    public int read() {
+        if (isOn) {
+            return ThreadLocalRandom.current().nextInt(-30, 31);
+        } else {
+            throw new IllegalStateException("Sensor is off!");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "TemperatureSensor{" +
+            "isOn=" + isOn +
+            '}';
+    }
+
 }

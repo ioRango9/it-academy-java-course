@@ -4,9 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AverageSensor implements Sensor {
+
     private final List<Sensor> listSensors = new ArrayList<>();
 
-    public void addSensors(Sensor toAdd) {
+    public static void main(String[] args) {
+        AverageSensor sensor = new AverageSensor();
+        sensor.addSensor(new TemperatureSensor());
+        System.out.println(sensor.read());
+    }
+
+    public void addSensor(Sensor toAdd) {
         listSensors.add(toAdd);
     }
 
@@ -45,21 +52,10 @@ public class AverageSensor implements Sensor {
                 valuesIncludedSensors += iterate.read();
             }
         }
-        System.out.print("Average values sensors are: ");
+        if (countIncludedSensors == 0) {
+            throw new IllegalStateException();
+        }
         return valuesIncludedSensors / countIncludedSensors;
     }
 
-    public static void main(String[] args) {
-        AverageSensor sensor = new AverageSensor();
-        sensor.addSensors(new TemperatureSensor());
-        sensor.addSensors(new StandardSensor(1));
-        sensor.addSensors(new TemperatureSensor());
-        System.out.println(sensor.listSensors);
-        System.out.println(sensor.read());
-        System.out.println(sensor.isOn());
-        sensor.setOn();
-        System.out.println(sensor.listSensors);
-        System.out.println(sensor.isOn());
-        System.out.println(sensor.read());
-    }
 }
